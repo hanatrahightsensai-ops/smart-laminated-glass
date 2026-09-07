@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Value-Added Development of Waste Polymer Films from Laminated Glass Manufacturing into Smart Films for Applications in Daily Life and Industrial Sectors </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+:root{
+  --orange:#F26522;
+  --orange-dark:#CF4E12;
+  --orange-light:#FFF1E7;
+  --orange-tint:#FDE4D4;
+  --white:#FFFFFF;
+  --bg:#F4F5F7;
+  --text:#2B2B2E;
+  --text-soft:#6B6D74;
+  --text-black:#111113;
+  --green:#1E7B34;
+  --green-bg:#E7F5EA;
+  --red:#C6302B;
+  --red-bg:#FBEAE9;
+  --yellow:#B8860B;
+  --yellow-bg:#FCF3DA;
+  --border:#E6E7EB;
+  --sidebar-w:264px;
+  --topbar-h:64px;
+  --radius:10px;
+  --shadow:0 1px 2px rgba(20,20,25,.04), 0 1px 8px rgba(20,20,25,.04);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Sarabun',-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{margin:0;font-weight:700;color:var(--text-black);}
+p{margin:0;}
+button{font-family:inherit;cursor:pointer;}
+::selection{background:var(--orange-tint);}
+.mock-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;color:var(--orange-dark);
+  background:var(--orange-light);border:1px solid var(--orange-tint);
+  padding:3px 10px;border-radius:20px;
+}
+.mock-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange);}
+.mock-banner{
+  display:flex;align-items:center;gap:8px;
+  background:var(--orange-light);border:1px solid var(--orange-tint);
+  color:var(--orange-dark);font-size:13.5px;font-weight:500;
+  padding:9px 16px;border-radius:8px;margin-bottom:20px;
+}
+
+/* ---------- LOGIN ---------- */
+#login-screen{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(242,101,34,.10), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(242,101,34,.08), transparent 45%),
+    #14161A;
+  padding:24px;
+}
+.login-card{
+  width:100%;max-width:408px;background:var(--white);
+  border-radius:16px;padding:40px 36px 32px;
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+}
+.login-mark{
+  width:52px;height:52px;border-radius:12px;
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+}
+.login-mark svg{width:28px;height:28px;stroke:#fff;}
+.login-card h1{font-size:20px;line-height:1.35;margin-bottom:4px;}
+.login-sub{color:var(--text-soft);font-size:13.5px;margin-bottom:26px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.field input[type=text],.field input[type=password]{
+  width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:8px;
+  font-family:inherit;font-size:14.5px;background:#FBFBFC;transition:border-color .15s;
+}
+.field input:focus{outline:none;border-color:var(--orange);background:#fff;}
+.row-between{display:flex;align-items:center;justify-content:space-between;margin:4px 0 22px;font-size:13px;color:var(--text-soft);}
+.row-between label{display:flex;align-items:center;gap:7px;cursor:pointer;}
+.login-btn{
+  width:100%;padding:12px;border:none;border-radius:8px;background:var(--orange);
+  color:#fff;font-size:15px;font-weight:600;transition:background .15s;
+}
+.login-btn:hover{background:var(--orange-dark);}
+.google-signup{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:9px;
+  margin-top:10px;padding:11px;border:1px solid var(--border);border-radius:8px;
+  background:#fff;color:var(--text);font-size:14px;font-weight:600;text-decoration:none;
+  transition:background .15s,border-color .15s;
+}
+.google-signup:hover{background:var(--bg);border-color:#c9cad1;}
+.google-signup svg{width:17px;height:17px;}
+.login-foot{text-align:center;margin-top:22px;font-size:12px;letter-spacing:.4px;color:var(--text-soft);font-weight:600;}
+
+/* ---------- APP SHELL ---------- */
+#app{display:none;}
+#app.show{display:flex;min-height:100vh;}
+.sidebar{
+  width:var(--sidebar-w);flex:0 0 var(--sidebar-w);background:#181A1F;color:#C9CAD1;
+  position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:20;
+}
+.sidebar-brand{
+  display:flex;align-items:center;gap:10px;padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.07);
+  cursor:pointer;
+}
+.sidebar-brand:hover{background:rgba(255,255,255,.04);}
+.sidebar-brand .mark{
+  width:34px;height:34px;border-radius:8px;flex:0 0 34px;
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  display:flex;align-items:center;justify-content:center;
+}
+.sidebar-brand .mark svg{width:19px;height:19px;stroke:#fff;}
+.sidebar-brand .name{font-size:13.5px;font-weight:700;color:#fff;line-height:1.25;}
+.sidebar-brand .name span{display:block;font-size:10.5px;font-weight:500;color:#8B8D97;letter-spacing:.3px;}
+.nav-group-label{font-size:10.5px;font-weight:700;letter-spacing:.6px;color:#66686F;text-transform:uppercase;padding:16px 20px 6px;}
+.navitem{
+  display:flex;align-items:center;gap:11px;padding:10px 20px;font-size:13.7px;font-weight:500;
+  color:#B7B8C0;cursor:pointer;border-left:3px solid transparent;transition:background .12s;
+}
+.navitem svg{width:17px;height:17px;stroke:currentColor;flex:0 0 17px;}
+.navitem:hover{background:rgba(255,255,255,.04);color:#fff;}
+.navitem.active{background:rgba(242,101,34,.12);color:#fff;border-left-color:var(--orange);}
+.main-wrap{flex:1;margin-left:var(--sidebar-w);display:flex;flex-direction:column;min-width:0;}
+.topbar{
+  height:var(--topbar-h);background:#fff;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 26px;position:sticky;top:0;z-index:10;
+}
+.topbar-search{
+  display:flex;align-items:center;gap:9px;background:var(--bg);border:1px solid var(--border);
+  border-radius:8px;padding:4px 6px 4px 13px;width:380px;color:var(--text-soft);font-size:13.5px;
+}
+.topbar-search svg{width:15px;height:15px;stroke:var(--text-soft);flex:0 0 15px;}
+.topbar-search input{border:0;outline:none;background:transparent;min-width:0;flex:1;font:inherit;color:var(--text);}
+.topbar-search input::placeholder{color:var(--text-soft);}
+.topbar-search button{border:0;border-radius:6px;background:var(--orange);color:#fff;padding:7px 11px;font:600 12px inherit;white-space:nowrap;}
+.topbar-search button:hover{background:var(--orange-dark);}
+.topbar-right{display:flex;align-items:center;gap:18px;}
+.icon-btn{position:relative;width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;}
+.icon-btn svg{width:17px;height:17px;stroke:var(--text-soft);}
+.icon-btn .dot{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid #fff;}
+.profile{display:flex;align-items:center;gap:9px;}
+.profile .avatar{width:34px;height:34px;border-radius:50%;background:var(--orange-light);color:var(--orange-dark);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;}
+.profile .who{font-size:12.5px;line-height:1.3;}
+.profile .who b{display:block;font-size:13px;color:var(--text-black);}
+.content{padding:26px 30px 60px;max-width:1440px;width:100%;margin:0 auto;}
+.page{display:none;}
+.page.active{display:block;animation:fadein .25s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:6px;}
+.page-head h2{font-size:22px;}
+.page-head .desc{color:var(--text-soft);font-size:13.5px;margin-top:4px;max-width:640px;}
+.page-toolbar{display:flex;gap:10px;flex-wrap:wrap;}
+.btn{border:1px solid var(--border);background:#fff;padding:9px 15px;border-radius:8px;font-size:13.3px;font-weight:600;color:var(--text);display:inline-flex;align-items:center;gap:7px;}
+.btn svg{width:15px;height:15px;stroke:currentColor;}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:#fff;}
+.btn.primary:hover{background:var(--orange-dark);}
+.btn:hover{border-color:#c9cad1;}
+.section-title{font-size:15.5px;font-weight:700;color:var(--text-black);margin:30px 0 14px;display:flex;align-items:center;gap:9px;}
+.section-title .bar{width:4px;height:16px;border-radius:2px;background:var(--orange);}
+
+/* grids & cards */
+.grid{display:grid;gap:16px;}
+.grid.kpi{grid-template-columns:repeat(4,1fr);}
+.grid.cols-2{grid-template-columns:1fr 1fr;}
+.grid.cols-3{grid-template-columns:repeat(3,1fr);}
+.grid.cols-4{grid-template-columns:repeat(4,1fr);}
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;}
+.kpi-card{position:relative;overflow:hidden;}
+.kpi-card .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.kpi-card .icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
+.kpi-card .icon svg{width:19px;height:19px;stroke:currentColor;}
+.kpi-card .label{font-size:12.5px;color:var(--text-soft);font-weight:600;}
+.kpi-card .value{font-size:27px;font-weight:700;color:var(--text-black);line-height:1.15;}
+.kpi-card .value small{font-size:14px;font-weight:600;color:var(--text-soft);}
+.kpi-card .delta{margin-top:9px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:4px;}
+.delta.up{color:var(--green);}
+.delta.down{color:var(--red);}
+.tone-orange{background:var(--orange-light);color:var(--orange-dark);}
+.tone-green{background:var(--green-bg);color:var(--green);}
+.tone-red{background:var(--red-bg);color:var(--red);}
+.tone-yellow{background:var(--yellow-bg);color:var(--yellow);}
+.tone-dark{background:#EFEFF1;color:var(--text-black);}
+
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:20px;}
+.status-pill.online{background:var(--green-bg);color:var(--green);}
+.status-pill.offline{background:var(--red-bg);color:var(--red);}
+.status-pill.warning{background:var(--yellow-bg);color:var(--yellow);}
+.status-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+.factory-card{display:flex;flex-direction:column;gap:14px;cursor:pointer;transition:box-shadow .15s, transform .15s;}
+.factory-card:hover{box-shadow:0 4px 18px rgba(20,20,25,.09);transform:translateY(-2px);}
+.factory-card .fhead{display:flex;justify-content:space-between;align-items:flex-start;}
+.factory-card .fname{font-size:15px;font-weight:700;color:var(--text-black);}
+.factory-card .floc{font-size:12.3px;color:var(--text-soft);margin-top:2px;}
+.factory-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fstat{background:var(--bg);border-radius:8px;padding:9px 11px;}
+.fstat .l{font-size:11px;color:var(--text-soft);font-weight:600;}
+.fstat .v{font-size:14.5px;font-weight:700;color:var(--text-black);margin-top:2px;}
+.progress-outer{height:7px;background:var(--bg);border-radius:6px;overflow:hidden;}
+.progress-inner{height:100%;border-radius:6px;background:var(--orange);}
+.map-frame{
+  height:230px;border-radius:var(--radius);border:1px solid var(--border);
+  background:
+    linear-gradient(0deg, rgba(20,20,25,.03) 1px, transparent 1px) 0 0/32px 32px,
+    linear-gradient(90deg, rgba(20,20,25,.03) 1px, transparent 1px) 0 0/32px 32px,
+    #FBFBFC;
+  position:relative;overflow:hidden;
+}
+.map-pin{position:absolute;width:15px;height:15px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.25);}
+.map-pin.on{background:var(--green);}
+.map-pin.off{background:var(--red);}
+.map-line{position:absolute;height:1.5px;background:repeating-linear-gradient(90deg,var(--orange) 0 6px, transparent 6px 11px);transform-origin:0 0;}
+.map-hub{position:absolute;width:20px;height:20px;border-radius:50%;background:var(--text-black);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.3);}
+
+/* flow diagram */
+.flow-vert{display:flex;flex-direction:column;align-items:center;}
+.flow-step{
+  width:100%;max-width:420px;background:#fff;border:1.5px solid var(--border);border-radius:9px;
+  padding:12px 16px;text-align:center;font-weight:600;font-size:13.5px;color:var(--text-black);
+  position:relative;
+}
+.flow-step.waste{border-color:var(--orange);background:var(--orange-light);color:var(--orange-dark);}
+.flow-arrow{padding:5px 0;color:var(--text-soft);}
+.flow-arrow svg{width:15px;height:15px;stroke:currentColor;}
+.flow-branch{
+  display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;color:var(--orange-dark);
+  background:#fff;border:1px dashed var(--orange);border-radius:20px;padding:5px 12px;margin:4px 0 4px 30px;align-self:flex-start;
+}
+
+.hstep-row{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:6px;}
+.hstep{flex:1 0 150px;text-align:center;padding:0 6px;position:relative;}
+.hstep .box{background:#fff;border:1.5px solid var(--border);border-radius:9px;padding:14px 10px;}
+.hstep .box .kg{font-size:15px;font-weight:700;color:var(--text-black);margin-top:4px;}
+.hstep .box .lb{font-size:11.5px;color:var(--text-soft);font-weight:600;}
+.hstep-arrow{display:flex;align-items:center;justify-content:center;flex:0 0 34px;color:var(--text-soft);}
+.hstep-arrow svg{width:16px;height:16px;stroke:currentColor;}
+
+/* table */
+table.cmp{width:100%;border-collapse:collapse;font-size:13.3px;}
+table.cmp th,table.cmp td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);}
+table.cmp th{background:var(--bg);font-weight:700;color:var(--text-black);font-size:12.5px;}
+table.cmp th:not(:first-child),table.cmp td:not(:first-child){text-align:center;}
+table.cmp td:first-child{font-weight:600;color:var(--text-soft);}
+table.cmp tr:last-child td{border-bottom:none;}
+.pill-good{color:var(--green);font-weight:700;}
+.pill-bad{color:var(--red);font-weight:700;}
+
+.stage-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);}
+.stage-item:last-child{border-bottom:none;}
+.stage-num{width:34px;height:34px;border-radius:8px;background:var(--orange-light);color:var(--orange-dark);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:0 0 34px;}
+.stage-num.done{background:var(--green-bg);color:var(--green);}
+.stage-body{flex:1;}
+.stage-body .t1{font-weight:700;font-size:13.8px;color:var(--text-black);display:flex;justify-content:space-between;}
+.stage-body .t2{font-size:12.2px;color:var(--text-soft);margin:4px 0 8px;}
+
+.tab-row{display:flex;gap:6px;border-bottom:1px solid var(--border);margin-bottom:18px;flex-wrap:wrap;}
+.tab-btn{padding:9px 15px;font-size:13.3px;font-weight:600;color:var(--text-soft);border-bottom:2.5px solid transparent;background:none;border-top:none;border-left:none;border-right:none;}
+.tab-btn.active{color:var(--orange-dark);border-bottom-color:var(--orange);}
+
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{padding:7px 14px;border-radius:20px;border:1px solid var(--border);font-size:12.7px;font-weight:600;background:#fff;color:var(--text-soft);}
+.chip.active{background:var(--text-black);color:#fff;border-color:var(--text-black);}
+
+.alert-item{display:flex;gap:13px;padding:14px 16px;border-radius:9px;border:1px solid var(--border);align-items:flex-start;margin-bottom:10px;}
+.alert-item .adot{width:9px;height:9px;border-radius:50%;margin-top:5px;flex:0 0 9px;}
+.alert-item.critical{background:var(--red-bg);border-color:#F2C7C4;}
+.alert-item.warning{background:var(--yellow-bg);border-color:#F0E0AE;}
+.alert-item.normal{background:var(--green-bg);border-color:#C7E4CC;}
+.alert-item .atitle{font-weight:700;font-size:13.5px;color:var(--text-black);}
+.alert-item .adesc{font-size:12.5px;color:var(--text-soft);margin-top:2px;}
+.alert-item .atime{font-size:11px;color:var(--text-soft);margin-left:auto;white-space:nowrap;}
+
+.app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.app-tile{border:1px solid var(--border);border-radius:var(--radius);padding:18px;background:#fff;}
+.app-tile .aicon{width:40px;height:40px;border-radius:9px;background:var(--orange-light);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+.app-tile .aicon svg{width:20px;height:20px;stroke:var(--orange-dark);}
+.app-tile .an{font-weight:700;font-size:13.8px;color:var(--text-black);}
+
+.report-row{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border:1px solid var(--border);border-radius:9px;margin-bottom:10px;}
+.report-row .rn{font-weight:700;font-size:13.8px;color:var(--text-black);}
+.report-row .rd{font-size:12px;color:var(--text-soft);margin-top:2px;}
+.report-actions{display:flex;gap:8px;}
+.report-actions .btn{padding:7px 12px;font-size:12.3px;}
+
+.product-card{border:1px solid var(--border);border-radius:var(--radius);background:#fff;overflow:hidden;}
+.product-card .pimg{height:120px;background:linear-gradient(135deg,var(--orange-light),#fff);display:flex;align-items:center;justify-content:center;}
+.product-card .pimg svg{width:44px;height:44px;stroke:var(--orange-dark);opacity:.7;}
+.product-card .pbody{padding:15px;}
+.product-card .pname{font-weight:700;font-size:14px;color:var(--text-black);}
+.product-card .pcode{font-size:11.5px;color:var(--text-soft);margin-bottom:10px;}
+.spec-row{display:flex;justify-content:space-between;font-size:12.3px;padding:4px 0;color:var(--text-soft);}
+.spec-row b{color:var(--text-black);font-weight:600;}
+.status-tag{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;}
+
+.role-card{border:1px solid var(--border);border-radius:var(--radius);padding:18px;background:#fff;}
+.role-card h4{font-size:14.5px;margin-bottom:10px;color:var(--text-black);}
+.role-card ul{margin:0;padding-left:18px;font-size:12.8px;color:var(--text-soft);line-height:1.9;}
+
+.chart-box{position:relative;height:270px;}
+.chart-box.sm{height:220px;}
+.legend-note{font-size:11.5px;color:var(--text-soft);margin-top:10px;}
+
+@media (max-width:1180px){
+  .grid.kpi{grid-template-columns:repeat(2,1fr);}
+  .grid.cols-3,.grid.cols-4,.app-grid{grid-template-columns:repeat(2,1fr);}
+  .grid.cols-2{grid-template-columns:1fr;}
+}
+@media (max-width:860px){
+  .sidebar{transform:translateX(-100%);transition:transform .2s;}
+  .sidebar.open{transform:none;}
+  .main-wrap{margin-left:0;}
+  .topbar-search{width:min(52vw,320px);}
+  .grid.kpi,.grid.cols-3,.grid.cols-4,.app-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:520px){
+  .grid.kpi,.grid.cols-3,.grid.cols-4,.app-grid{grid-template-columns:1fr;}
+  .topbar-search{width:calc(100vw - 82px);}
+  .topbar-search button{padding:7px 8px;font-size:11px;}
+}
+.menu-toggle{display:none;}
+@media (max-width:860px){.menu-toggle{display:flex;}}
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>
+    </div>
+    <h1>Smart Laminated Glass<br>Waste Management</h1>
+    <p class="login-sub">เข้าสู่ระบบเพื่อติดตามข้อมูลกระบวนการผลิตและการจัดการของเสียของโรงงานในเครือข่าย</p>
+    <form id="login-form">
+      <div class="field">
+        <label>Username / Email</label>
+        <input type="text" placeholder="name@company.com" value="distributor@smartfilm.co.th">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" placeholder="••••••••" value="••••••••">
+      </div>
+      <div class="row-between">
+        <label><input type="checkbox" checked> Remember me</label>
+        <span style="color:var(--orange-dark);font-weight:600;cursor:pointer;">Forgot password?</span>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <a class="google-signup" href="https://accounts.google.com/signup" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.35 12.2c0-.7-.06-1.37-.18-2H12v3.79h5.24a4.48 4.48 0 0 1-1.94 2.94v2.44h3.14c1.84-1.7 2.91-4.2 2.91-7.17z"/><path fill="#34A853" d="M12 21.5c2.63 0 4.84-.87 6.45-2.37l-3.14-2.44c-.87.58-1.98.92-3.31.92-2.55 0-4.71-1.72-5.49-4.04H3.27v2.52A9.74 9.74 0 0 0 12 21.5z"/><path fill="#FBBC05" d="M6.51 13.57A5.85 5.85 0 0 1 6.2 12c0-.55.1-1.08.31-1.57V7.91H3.27A9.5 9.5 0 0 0 2.25 12c0 1.47.35 2.86 1.02 4.09l3.24-2.52z"/><path fill="#EA4335" d="M12 6.39c1.43 0 2.71.49 3.72 1.45l2.79-2.79C16.84 3.48 14.63 2.5 12 2.5a9.74 9.74 0 0 0-8.73 5.41l3.24 2.52C7.29 8.11 9.45 6.39 12 6.39z"/></svg>
+      Sign up with Google
+    </a>
+    <div class="login-foot">INDUSTRIAL WASTE INTELLIGENCE PLATFORM</div>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand" id="sidebarLogo" role="button" tabindex="0" aria-label="กลับไปหน้า Login">
+      <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></div>
+      <div class="name">Smart Laminated Glass<span>Waste Management Platform</span></div>
+    </div>
+    <div class="nav-group-label">Overview</div>
+    <div class="navitem active" data-page="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Dashboard</div>
+    <div class="navitem" data-page="factory-network"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l5-4 5 4v11"/><path d="M15 21v-7l4-3 2 2v8"/></svg>Factory Network</div>
+    <div class="navitem" data-page="analytics"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>Production Analytics</div>
+    <div class="nav-group-label">Waste &amp; Materials</div>
+    <div class="navitem" data-page="waste"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13"/><path d="M9 7V4h6v3"/></svg>Waste Management</div>
+    <div class="navitem" data-page="circular"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>Circular Economy</div>
+    <div class="navitem" data-page="smartfilm"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 15h18M9 4v16"/></svg>Smart Film Development</div>
+    <div class="navitem" data-page="comparison"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>Film Comparison</div>
+    <div class="navitem" data-page="applications"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Applications</div>
+    <div class="nav-group-label">Insights</div>
+    <div class="navitem" data-page="environment"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 10 13.5 10 12"/></svg>Environmental Impact</div>
+    <div class="navitem" data-page="alerts"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Alerts</div>
+    <div class="navitem" data-page="reports"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6M9 9h1"/></svg>Reports</div>
+    <div class="navitem" data-page="products"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>Products</div>
+    <div class="nav-group-label">System</div>
+    <div class="navitem" data-page="settings"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</div>
+  </aside>
+
+  <div class="main-wrap">
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <button class="menu-toggle icon-btn" id="menuToggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+        <form class="topbar-search" id="factorySearchForm">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="factorySearchInput" type="search" placeholder="ค้นหาโรงงานกระจกลามิเนต..." aria-label="ค้นหาโรงงานกระจกลามิเนต">
+          <button type="submit">ค้นหาโรงงาน</button>
+        </form>
+      </div>
+      <div class="topbar-right">
+        <div class="icon-btn"><span class="dot"></span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+        <div class="profile">
+          <div class="avatar">SD</div>
+          <div class="who"><b>Somchai D.</b>Distributor · Central Region</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- ================= DASHBOARD ================= -->
+      <section class="page active" id="page-dashboard">
+        <div class="page-head">
+          <div>
+            <h2>ภาพรวมเครือข่ายโรงงาน</h2>
+            <p class="desc">Waste is not the end of the process. It is the beginning of a new material.</p>
+          </div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+
+        <div class="grid kpi" style="margin-top:20px;">
+          <div class="card kpi-card">
+            <div class="top"><span class="label">โรงงานที่เชื่อมต่อ</span><span class="icon tone-orange"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10l5-4 5 4v11"/></svg></span></div>
+            <div class="value">3 <small>/ 3 online</small></div>
+            <div class="delta up">▲ ทั้งหมดออนไลน์</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="top"><span class="label">กระจกลามิเนตที่ผลิต</span><span class="icon tone-dark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v16"/></svg></span></div>
+            <div class="value">34,200 <small>m²/day</small></div>
+            <div class="delta up">▲ 2.1% จากสัปดาห์ก่อน</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="top"><span class="label">เศษฟิล์มพอลิเมอร์ที่เกิดขึ้น</span><span class="icon tone-orange"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13"/><path d="M9 7V4h6v3"/></svg></span></div>
+            <div class="value">12,580 <small>kg</small></div>
+            <div class="delta down">▼ Film Waste</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="top"><span class="label">ของเสียที่นำกลับมาใช้ได้</span><span class="icon tone-green"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span></div>
+            <div class="value">8,920 <small>kg</small></div>
+            <div class="delta up">▲ Recovered</div>
+          </div>
+        </div>
+
+        <div class="grid kpi" style="margin-top:16px;">
+          <div class="card kpi-card">
+            <div class="top"><span class="label">ลดการฝังกลบ</span><span class="icon tone-green"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V10l7-6 7 6v11"/></svg></span></div>
+            <div class="value">6,850 <small>kg</small></div>
+            <div class="delta up">Landfill Avoided</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="top"><span class="label">ลดการเผาทำลาย</span><span class="icon tone-yellow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 4-3 5-3 9a3 3 0 0 0 6 0c1 1 2 2 2 4a5 5 0 0 1-10 0c0-5 4-7 5-13z"/></svg></span></div>
+            <div class="value">4,120 <small>kg</small></div>
+            <div class="delta up">Incineration Avoided</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="top"><span class="label">อัตราการนำกลับมาใช้ใหม่</span><span class="icon tone-orange"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span></div>
+            <div class="value">70.9<small>%</small></div>
+            <div class="progress-outer" style="margin-top:10px;"><div class="progress-inner" style="width:70.9%;"></div></div>
+          </div>
+          <div class="card kpi-card">
+            <div class="top"><span class="label">ลดการปล่อย CO₂ โดยประมาณ</span><span class="icon tone-green"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/></svg></span></div>
+            <div class="value">24.8 <small>tCO₂e</small></div>
+            <div class="delta up">▲ เทียบเดือนก่อน</div>
+          </div>
+        </div>
+
+        <div class="grid cols-2" style="margin-top:26px;">
+          <div class="card">
+            <h3 style="font-size:14.5px;margin-bottom:14px;">แนวโน้มการเกิดของเสียและการนำกลับมาใช้ (7 วันล่าสุด)</h3>
+            <div class="chart-box"><canvas id="chartDashTrend"></canvas></div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:14.5px;margin-bottom:14px;">สัดส่วนการจัดการของเสีย</h3>
+            <div class="chart-box"><canvas id="chartDashDonut"></canvas></div>
+          </div>
+        </div>
+
+        <div class="section-title"><span class="bar"></span>สถานะโรงงานในเครือข่าย</div>
+        <div class="grid cols-3" id="dashFactoryMini"></div>
+      </section>
+
+      <!-- ================= FACTORY NETWORK ================= -->
+      <section class="page" id="page-factory-network">
+        <div class="page-head">
+          <div><h2>Factory Network</h2><p class="desc">ติดตามสถานะและผลการดำเนินงานของโรงงานกระจกลามิเนตทุกแห่งในเครือข่าย</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="section-title" style="margin-top:22px;"><span class="bar"></span>แผนที่เครือข่ายโรงงาน</div>
+        <div class="map-frame" id="factoryMap"></div>
+        <div class="section-title"><span class="bar"></span>รายชื่อโรงงานทั้งหมด</div>
+        <div class="grid cols-3" id="factoryCards"></div>
+      </section>
+
+      <!-- ================= FACTORY DETAIL ================= -->
+      <section class="page" id="page-factory-detail">
+        <div class="page-head">
+          <div><h2 id="fdTitle">Factory 01 · Laminated Glass Plant A</h2><p class="desc">กระบวนการผลิตและจุดเกิดเศษฟิล์มพอลิเมอร์ของโรงงาน</p></div>
+          <button class="btn" onclick="goPage('factory-network')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>กลับไป Factory Network</button>
+        </div>
+        <div class="grid cols-3" style="margin-top:20px;" id="fdStats"></div>
+        <div class="grid cols-2" style="margin-top:22px;align-items:start;">
+          <div class="card">
+            <h3 style="font-size:14.5px;margin-bottom:16px;">Production Flow Diagram</h3>
+            <div class="flow-vert" id="fdFlow"></div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:14.5px;margin-bottom:14px;">Polymer Waste Generation Point</h3>
+            <div id="fdWastePoints"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= WASTE MANAGEMENT ================= -->
+      <section class="page" id="page-waste">
+        <div class="page-head">
+          <div><h2>Polymer Waste Management</h2><p class="desc">ติดตามปริมาณของเสียตั้งแต่เกิดขึ้นจนถึงการแปรรูปเป็น Smart Film</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="grid cols-4" style="margin-top:20px;">
+          <div class="card kpi-card"><div class="label">Waste Generated</div><div class="value" style="margin-top:8px;">12,580 <small>kg</small></div></div>
+          <div class="card kpi-card"><div class="label">Waste Collected</div><div class="value" style="margin-top:8px;">11,940 <small>kg</small></div></div>
+          <div class="card kpi-card"><div class="label">Waste Sorted</div><div class="value" style="margin-top:8px;">10,650 <small>kg</small></div></div>
+          <div class="card kpi-card"><div class="label">Waste Recovered</div><div class="value" style="margin-top:8px;color:var(--green);">8,920 <small>kg</small></div></div>
+          <div class="card kpi-card"><div class="label">Waste Recycled</div><div class="value" style="margin-top:8px;color:var(--green);">7,850 <small>kg</small></div></div>
+          <div class="card kpi-card"><div class="label">Sent to Landfill</div><div class="value" style="margin-top:8px;color:var(--red);">2,180 <small>kg</small></div></div>
+          <div class="card kpi-card"><div class="label">Sent for Incineration</div><div class="value" style="margin-top:8px;color:var(--red);">1,480 <small>kg</small></div></div>
+          <div class="card kpi-card"><div class="label">Converted to Smart Film</div><div class="value" style="margin-top:8px;color:var(--orange-dark);">6,900 <small>kg</small></div></div>
+        </div>
+
+        <div class="grid cols-2" style="margin-top:26px;">
+          <div class="card"><h3 style="font-size:14.5px;margin-bottom:14px;">Waste Generation Trend</h3><div class="chart-box sm"><canvas id="chartWasteGen"></canvas></div></div>
+          <div class="card"><h3 style="font-size:14.5px;margin-bottom:14px;">Waste Recovery Trend</h3><div class="chart-box sm"><canvas id="chartWasteRecov"></canvas></div></div>
+          <div class="card"><h3 style="font-size:14.5px;margin-bottom:14px;">Recycling Rate by Factory</h3><div class="chart-box sm"><canvas id="chartRecycleRate"></canvas></div></div>
+          <div class="card"><h3 style="font-size:14.5px;margin-bottom:14px;">Landfill vs Incineration Reduction</h3><div class="chart-box sm"><canvas id="chartLandfillIncin"></canvas></div></div>
+        </div>
+
+        <div class="section-title"><span class="bar"></span>Waste Distribution Flow (Sankey-style)</div>
+        <div class="card">
+          <div class="hstep-row" id="wasteSankey"></div>
+          <p class="legend-note">แถบสีแสดงสัดส่วนปริมาณของเสีย (kg) ที่ไหลจากขั้นตอนหนึ่งไปยังอีกขั้นตอนหนึ่ง — เป็นข้อมูลจำลองเพื่อสาธิตรูปแบบ Sankey Diagram</p>
+        </div>
+      </section>
+
+      <!-- ================= CIRCULAR ECONOMY ================= -->
+      <section class="page" id="page-circular">
+        <div class="page-head">
+          <div><h2>Circular Waste Flow</h2><p class="desc">เส้นทางของเศษฟิล์มพอลิเมอร์จากของเสียสู่ผลิตภัณฑ์ฟิล์มอัจฉริยะ</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="card" style="margin-top:20px;max-width:520px;">
+          <div class="hstep-row" style="flex-direction:column;" id="circularFlow"></div>
+        </div>
+        <p class="legend-note" style="margin-top:10px;">Production → Waste → Recovery → Reprocessing → Smart Film → Application</p>
+      </section>
+
+      <!-- ================= SMART FILM DEVELOPMENT ================= -->
+      <section class="page" id="page-smartfilm">
+        <div class="page-head">
+          <div><h2>Smart Film Development</h2><p class="desc">Turning Laminated Glass Polymer Waste into Smart Materials — ความคืบหน้าของแต่ละขั้นตอนการพัฒนา</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="card" style="margin-top:20px;" id="stageList"></div>
+      </section>
+
+      <!-- ================= FILM COMPARISON ================= -->
+      <section class="page" id="page-comparison">
+        <div class="page-head">
+          <div><h2>Smart Film Comparison</h2><p class="desc">Conventional Film เทียบกับ Recycled Smart Film ที่พัฒนาจากเศษฟิล์มพอลิเมอร์</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="grid cols-2" style="margin-top:20px;align-items:start;">
+          <div class="card"><h3 style="font-size:14.5px;margin-bottom:14px;">ประสิทธิภาพโดยรวม (Radar)</h3><div class="chart-box"><canvas id="chartRadar"></canvas></div></div>
+          <div class="card" style="overflow-x:auto;">
+            <h3 style="font-size:14.5px;margin-bottom:14px;">ตารางเปรียบเทียบคุณสมบัติ</h3>
+            <table class="cmp" id="cmpTable"></table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= APPLICATIONS ================= -->
+      <section class="page" id="page-applications">
+        <div class="page-head">
+          <div><h2>Applications</h2><p class="desc">การประยุกต์ใช้ Smart Film ในชีวิตประจำวันและภาคอุตสาหกรรม</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="section-title" style="margin-top:22px;"><span class="bar"></span>Daily Life</div>
+        <div class="app-grid" id="appsDaily"></div>
+        <div class="section-title"><span class="bar"></span>Industrial</div>
+        <div class="app-grid" id="appsIndustrial"></div>
+      </section>
+
+      <!-- ================= ENVIRONMENTAL IMPACT ================= -->
+      <section class="page" id="page-environment">
+        <div class="page-head">
+          <div><h2>Environmental Impact</h2><p class="desc">ผลกระทบเชิงบวกต่อสิ่งแวดล้อมจากระบบการนำเศษฟิล์มพอลิเมอร์กลับมาใช้ประโยชน์</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="grid kpi" style="margin-top:20px;">
+          <div class="card kpi-card"><div class="label">CO₂ Avoided</div><div class="value" style="margin-top:8px;color:var(--green);">24.8 <small>tCO₂e</small></div></div>
+          <div class="card kpi-card"><div class="label">Landfill Avoided</div><div class="value" style="margin-top:8px;color:var(--green);">18.2 <small>tons</small></div></div>
+          <div class="card kpi-card"><div class="label">Recovered Polymer</div><div class="value" style="margin-top:8px;">32.6 <small>tons</small></div></div>
+          <div class="card kpi-card"><div class="label">Waste Recovery Rate</div><div class="value" style="margin-top:8px;">72.4<small>%</small></div></div>
+        </div>
+        <div class="grid cols-2" style="margin-top:24px;">
+          <div class="card"><h3 style="font-size:14.5px;margin-bottom:14px;">Before vs After Waste Recovery</h3><div class="chart-box sm"><canvas id="chartBeforeAfter"></canvas></div></div>
+          <div class="card">
+            <h3 style="font-size:14.5px;margin-bottom:14px;">Before / After Comparison</h3>
+            <div class="grid cols-2" style="gap:12px;">
+              <div style="background:var(--red-bg);border-radius:9px;padding:14px;">
+                <div class="status-pill offline" style="margin-bottom:10px;">Before</div>
+                <ul style="margin:0;padding-left:18px;font-size:12.6px;color:var(--text);line-height:1.9;">
+                  <li>เศษฟิล์มถูกทิ้ง</li><li>ฝังกลบ</li><li>เผาทำลาย</li><li>สูญเสียมูลค่าวัตถุดิบ</li><li>เกิดผลกระทบต่อสิ่งแวดล้อม</li>
+                </ul>
+              </div>
+              <div style="background:var(--green-bg);border-radius:9px;padding:14px;">
+                <div class="status-pill online" style="margin-bottom:10px;">After</div>
+                <ul style="margin:0;padding-left:18px;font-size:12.6px;color:var(--text);line-height:1.9;">
+                  <li>คัดแยก</li><li>นำกลับมาใช้ใหม่</li><li>Reprocess</li><li>พัฒนา Smart Film</li><li>เพิ่มมูลค่าของวัสดุ</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ANALYTICS ================= -->
+      <section class="page" id="page-analytics">
+        <div class="page-head">
+          <div><h2>Production Analytics</h2><p class="desc">วิเคราะห์ปริมาณการผลิต การใช้ฟิล์ม อัตราของเสีย และประสิทธิภาพการผลิต</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="page-toolbar" style="margin-top:16px;">
+          <div class="chip-row" id="timeRangeChips">
+            <span class="chip active" data-range="today">Today</span>
+            <span class="chip" data-range="7d">7 Days</span>
+            <span class="chip" data-range="30d">30 Days</span>
+            <span class="chip" data-range="3m">3 Months</span>
+            <span class="chip" data-range="1y">1 Year</span>
+          </div>
+          <div class="chip-row" id="factoryFilterChips">
+            <span class="chip active" data-factory="all">ทุกโรงงาน</span>
+            <span class="chip" data-factory="a">Plant A</span>
+            <span class="chip" data-factory="b">Plant B</span>
+            <span class="chip" data-factory="c">Plant C</span>
+          </div>
+        </div>
+        <div class="grid cols-4" style="margin-top:18px;">
+          <div class="card kpi-card"><div class="label">Production Volume</div><div class="value" style="margin-top:8px;">34,200 <small>m²</small></div></div>
+          <div class="card kpi-card"><div class="label">Film Consumption</div><div class="value" style="margin-top:8px;">15,860 <small>m</small></div></div>
+          <div class="card kpi-card"><div class="label">Defect Rate</div><div class="value" style="margin-top:8px;color:var(--red);">2.4<small>%</small></div></div>
+          <div class="card kpi-card"><div class="label">Production Efficiency</div><div class="value" style="margin-top:8px;color:var(--green);">91.3<small>%</small></div></div>
+        </div>
+        <div class="grid cols-2" style="margin-top:22px;">
+          <div class="card"><h3 style="font-size:14.5px;margin-bottom:14px;">Production Volume vs Film Waste</h3><div class="chart-box"><canvas id="chartAnalytics1"></canvas></div></div>
+          <div class="card"><h3 style="font-size:14.5px;margin-bottom:14px;">Recovery Rate Trend</h3><div class="chart-box"><canvas id="chartAnalytics2"></canvas></div></div>
+        </div>
+      </section>
+
+      <!-- ================= ALERTS ================= -->
+      <section class="page" id="page-alerts">
+        <div class="page-head">
+          <div><h2>Alerts</h2><p class="desc">การแจ้งเตือนสถานะโรงงาน ปริมาณของเสีย และคุณภาพการผลิตแบบเรียลไทม์</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div style="margin-top:20px;max-width:760px;" id="alertsList"></div>
+      </section>
+
+      <!-- ================= REPORTS ================= -->
+      <section class="page" id="page-reports">
+        <div class="page-head">
+          <div><h2>Reports</h2><p class="desc">สร้างและดาวน์โหลดรายงานสำหรับการนำเสนอและตรวจสอบย้อนหลัง</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div style="margin-top:20px;max-width:760px;" id="reportsList"></div>
+      </section>
+
+      <!-- ================= PRODUCTS ================= -->
+      <section class="page" id="page-products">
+        <div class="page-head">
+          <div><h2>Product Catalog</h2><p class="desc">Smart Film ที่พัฒนาจาก Recovered Polymer สำหรับการจำหน่ายและประยุกต์ใช้</p></div>
+          <span class="mock-tag">ข้อมูลจำลอง (Mock Data)</span>
+        </div>
+        <div class="grid cols-3" style="margin-top:20px;" id="productsGrid"></div>
+      </section>
+
+      <!-- ================= SETTINGS ================= -->
+      <section class="page" id="page-settings">
+        <div class="page-head">
+          <div><h2>Settings</h2><p class="desc">การตั้งค่าบัญชีผู้ใช้งานและสิทธิ์การเข้าถึงระบบ</p></div>
+        </div>
+        <div class="section-title" style="margin-top:20px;"><span class="bar"></span>Role &amp; Permissions</div>
+        <div class="grid cols-3" id="rolesGrid"></div>
+
+        <div class="section-title"><span class="bar"></span>บัญชีของฉัน</div>
+        <div class="card" style="max-width:520px;">
+          <div class="field"><label>ชื่อผู้ใช้งาน</label><input type="text" value="Somchai D."></div>
+          <div class="field"><label>บทบาท</label><input type="text" value="Distributor · Central Region"></div>
+          <div class="field"><label>อีเมล</label><input type="text" value="distributor@smartfilm.co.th"></div>
+          <button class="btn primary">บันทึกการเปลี่ยนแปลง</button>
+        </div>
+      </section>
+
+    </div>
+
+    <footer style="border-top:1px solid var(--border);padding:22px 30px;text-align:center;background:#fff;">
+      <p style="font-weight:700;font-size:13px;color:var(--text-black);">Smart Laminated Glass Waste Management Platform</p>
+      <p style="font-size:12px;color:var(--text-soft);margin-top:4px;">Circular Economy • Smart Manufacturing • Sustainable Materials</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ================= MOCK DATA ================= */
+const factories = [
+  {id:'a', code:'Factory 01', name:'Laminated Glass Plant A', location:'ชลบุรี, ประเทศไทย', online:true, x:22,y:35,
+   production:12500, wasteDay:820, recoveredDay:610, rate:74.4},
+  {id:'b', code:'Factory 02', name:'Laminated Glass Plant B', location:'สมุทรปราการ, ประเทศไทย', online:true, x:55,y:65,
+   production:11200, wasteDay:705, recoveredDay:480, rate:68.1},
+  {id:'c', code:'Factory 03', name:'Laminated Glass Plant C', location:'ระยอง, ประเทศไทย', online:false, x:80,y:30,
+   production:10500, wasteDay:640, recoveredDay:390, rate:60.9},
+];
+
+const flowSteps = ['Raw Materials','Glass Cutting','Glass Cleaning','Polymer Film Lamination','Heating / Pressing','Autoclave','Quality Control','Finished Laminated Glass'];
+const wastePoints = [
+  {name:'Film Cutting Waste', kg:310, stage:'Glass Cutting'},
+  {name:'Edge Trim Waste', kg:180, stage:'Polymer Film Lamination'},
+  {name:'Defective Film', kg:150, stage:'Quality Control'},
+  {name:'Production Scrap', kg:180, stage:'Heating / Pressing'},
+];
+
+const circularSteps = [
+  {label:'Production', kg:null},
+  {label:'Polymer Film Scrap', kg:12580},
+  {label:'Collection', kg:11940},
+  {label:'Sorting', kg:10650},
+  {label:'Cleaning', kg:9800},
+  {label:'Material Processing', kg:9200},
+  {label:'Reprocessing', kg:7850},
+  {label:'Smart Film Development', kg:6900},
+  {label:'Smart Film Product', kg:6500},
+  {label:'Industrial / Daily Applications', kg:null},
+];
+
+const stages = [
+  {n:'01',t:'Waste Polymer Collection', d:'รวบรวมเศษฟิล์มพอลิเมอร์จากโรงงานในเครือข่ายทั้งหมด', p:100},
+  {n:'02',t:'Material Separation', d:'คัดแยกประเภทวัสดุและสิ่งปนเปื้อนออกจากเศษฟิล์ม', p:100},
+  {n:'03',t:'Cleaning & Preparation', d:'ทำความสะอาดและเตรียมวัตถุดิบก่อนเข้ากระบวนการแปรรูป', p:100},
+  {n:'04',t:'Polymer Reprocessing', d:'แปรรูปพอลิเมอร์ให้อยู่ในสภาพพร้อมขึ้นรูปใหม่', p:85},
+  {n:'05',t:'Film Formation', d:'ขึ้นรูปฟิล์มจากพอลิเมอร์ที่ผ่านการแปรรูปแล้ว', p:70},
+  {n:'06',t:'Smart Function Integration', d:'เพิ่มคุณสมบัติอัจฉริยะ เช่น การควบคุมแสงและความร้อน', p:55},
+  {n:'07',t:'Laboratory Testing', d:'ทดสอบคุณสมบัติทางกายภาพและประสิทธิภาพในห้องปฏิบัติการ', p:40},
+  {n:'08',t:'Prototype', d:'พัฒนาต้นแบบผลิตภัณฑ์เพื่อทดสอบการใช้งานจริง', p:25},
+  {n:'09',t:'Industrial Validation', d:'ทดสอบและรับรองผลในระดับอุตสาหกรรม', p:10},
+  {n:'10',t:'Commercial Product', d:'ผลิตภัณฑ์พร้อมจำหน่ายเชิงพาณิชย์', p:0},
+];
+
+const cmpRows = [
+  ['วัตถุดิบ','Virgin Polymer','Recovered Polymer (Recycled)'],
+  ['ความโปร่งใส','สูงมาก (92%)','สูง (87%)'],
+  ['ความแข็งแรง','ปานกลาง','ปานกลาง–สูง'],
+  ['การป้องกัน UV','พื้นฐาน','ปรับแต่งได้ (Enhanced)'],
+  ['การควบคุมแสง','ไม่มี','มี (Smart Function)'],
+  ['การควบคุมความร้อน','ต่ำ','สูง'],
+  ['ความสามารถในการรีไซเคิล','ต่ำ','สูง'],
+  ['อายุการใช้งาน','5–7 ปี','6–8 ปี'],
+  ['ต้นทุน','สูง','ต่ำกว่า 15–20%'],
+  ['Carbon Footprint','สูง','ต่ำกว่าอย่างมีนัยสำคัญ'],
+  ['การใช้พลังงาน','สูง','ลดลง (ใช้วัตถุดิบรีไซเคิล)'],
+  ['การประยุกต์ใช้','ทั่วไป','อาคาร, ยานยนต์, อุตสาหกรรม'],
+];
+
+const radarLabels = ['ความโปร่งใส','ความแข็งแรง','ป้องกัน UV','ควบคุมความร้อน','รีไซเคิลได้','ความคุ้มค่า'];
+const radarConventional = [92,70,55,40,30,50];
+const radarSmart = [87,75,88,85,90,80];
+
+const dailyApps = [
+  {t:'Smart Window'}, {t:'อาคารที่อยู่อาศัย'}, {t:'รถยนต์'}, {t:'กระจกอัจฉริยะ'},
+  {t:'Privacy Glass'}, {t:'ฟิล์มลดความร้อน'}, {t:'ฟิล์มป้องกัน UV'},
+];
+const industrialApps = [
+  {t:'Smart Factory'}, {t:'อาคารสำนักงาน'}, {t:'โรงงาน'}, {t:'Automotive'},
+  {t:'Aerospace'}, {t:'Solar Energy'}, {t:'Electronic Devices'}, {t:'Green Building'},
+];
+
+const alerts = [
+  {level:'critical', title:'Critical — Factory 03', desc:'Polymer Waste สูงกว่าค่าที่กำหนด (Threshold: 700 kg/day)', time:'5 นาทีที่แล้ว'},
+  {level:'warning', title:'Warning — Recovery Rate ลดลง', desc:'Recovery Rate ของ Plant B ลดลง 8% เมื่อเทียบกับสัปดาห์ก่อน', time:'42 นาทีที่แล้ว'},
+  {level:'critical', title:'Critical — Factory 03 Offline', desc:'ไม่ได้รับข้อมูลจากโรงงานตั้งแต่ 06:20 น.', time:'1 ชั่วโมงที่แล้ว'},
+  {level:'normal', title:'Normal — Factory 01 บรรลุเป้าหมาย', desc:'สามารถนำวัสดุกลับมาใช้ได้ตามเป้าหมายที่ตั้งไว้', time:'3 ชั่วโมงที่แล้ว'},
+  {level:'warning', title:'Warning — Production Defect สูง', desc:'อัตราของเสียจากการผลิตของ Plant C สูงกว่าค่าเฉลี่ย 30 วัน', time:'5 ชั่วโมงที่แล้ว'},
+];
+
+const reports = [
+  {n:'Production Report', d:'สรุปปริมาณการผลิตรายเดือน'},
+  {n:'Waste Report', d:'สรุปการเกิดและจัดการของเสีย'},
+  {n:'Recycling Report', d:'อัตราการรีไซเคิลและนำกลับมาใช้'},
+  {n:'Environmental Report', d:'ผลกระทบสิ่งแวดล้อมและ CO₂'},
+  {n:'Smart Film Development Report', d:'ความคืบหน้าการพัฒนาฟิล์มอัจฉริยะ'},
+  {n:'Factory Performance Report', d:'ผลการดำเนินงานรายโรงงาน'},
+];
+
+const products = [
+  {name:'SmartFilm UV-Guard 200', code:'SF-UVG-200', material:'Recovered PVB', thickness:'0.38 mm', transparency:'89%', uv:'99%', heat:'35%', func:'UV Blocking', recycled:'72%', cf:'ต่ำ', app:'อาคาร, ยานยนต์', status:'Pilot', tone:'yellow'},
+  {name:'SmartFilm Therm-X 150', code:'SF-TMX-150', material:'Recovered EVA', thickness:'0.45 mm', transparency:'82%', uv:'95%', heat:'58%', func:'Heat Control', recycled:'68%', cf:'ต่ำมาก', app:'อาคารสำนักงาน', status:'Testing', tone:'yellow'},
+  {name:'SmartFilm PrivaShift 100', code:'SF-PVS-100', material:'Recovered PVB/EVA', thickness:'0.50 mm', transparency:'ปรับได้', uv:'97%', heat:'40%', func:'Switchable Privacy', recycled:'65%', cf:'ต่ำ', app:'ที่อยู่อาศัย, รถยนต์', status:'Prototype', tone:'orange'},
+  {name:'SmartFilm SolarCell 300', code:'SF-SLC-300', material:'Recovered PVB', thickness:'0.60 mm', transparency:'70%', uv:'99%', heat:'62%', func:'Energy Harvesting', recycled:'60%', cf:'ต่ำ', app:'Solar Energy, Green Building', status:'Research', tone:'dark'},
+  {name:'SmartFilm ClearGuard 120', code:'SF-CLG-120', material:'Recovered PVB', thickness:'0.35 mm', transparency:'91%', uv:'98%', heat:'30%', func:'UV + Impact Guard', recycled:'75%', cf:'ต่ำมาก', app:'อุตสาหกรรมยานยนต์', status:'Commercial', tone:'green'},
+  {name:'SmartFilm AeroTech 250', code:'SF-ARO-250', material:'Recovered PVB/PU', thickness:'0.55 mm', transparency:'85%', uv:'99%', heat:'50%', func:'Multi-layer Protection', recycled:'70%', cf:'ต่ำ', app:'Aerospace, Electronic Devices', status:'Pilot', tone:'yellow'},
+];
+
+const roles = [
+  {t:'Admin', items:['ดูทุกโรงงาน','แก้ไขข้อมูล','จัดการผู้ใช้งาน']},
+  {t:'Factory Manager', items:['ดูข้อมูลโรงงานของตนเอง','ตรวจสอบ Production','ตรวจสอบ Waste']},
+  {t:'Engineer', items:['วิเคราะห์กระบวนการผลิต','วิเคราะห์ Waste','Smart Film Development']},
+  {t:'Distributor', items:['ดูข้อมูลโรงงาน','ดูผลิตภัณฑ์','ดูข้อมูล Smart Film','ดูข้อมูลสำหรับการจำหน่าย']},
+  {t:'Environmental Officer', items:['ตรวจสอบ Waste','Environmental KPI','Carbon Reduction']},
+];
+
+/* ================= ICON HELPERS ================= */
+const svgIcon = (path)=>`<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+const iconFactory = svgIcon('<path d="M3 21h18"/><path d="M5 21V10l5-4 5 4v11"/><path d="M15 21v-7l4-3 2 2v8"/>');
+const iconLayers = svgIcon('<path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/>');
+const iconRecycle = svgIcon('<path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>');
+const iconLeaf = svgIcon('<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>');
+const iconBox = svgIcon('<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>');
+
+/* ================= NAVIGATION ================= */
+function goPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.navitem').forEach(n=>n.classList.remove('active'));
+  const target = document.getElementById('page-'+id);
+  if(target) target.classList.add('active');
+  const nav = document.querySelector('.navitem[data-page="'+id+'"]');
+  if(nav) nav.classList.add('active');
+  document.querySelector('.content').scrollTop = 0;
+  window.scrollTo({top:0, behavior:'instant'});
+  document.getElementById('sidebar').classList.remove('open');
+}
+document.querySelectorAll('.navitem').forEach(el=>{
+  el.addEventListener('click', ()=>goPage(el.dataset.page));
+});
+document.getElementById('menuToggle').addEventListener('click', ()=>{
+  document.getElementById('sidebar').classList.toggle('open');
+});
+
+function showLogin(){
+  const loginScreen = document.getElementById('login-screen');
+  const app = document.getElementById('app');
+  const loginButton = document.querySelector('.login-btn');
+  app.classList.remove('show');
+  loginScreen.style.display = 'flex';
+  loginScreen.style.opacity = '1';
+  loginButton.disabled = false;
+  loginButton.textContent = 'Login';
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+const sidebarLogo = document.getElementById('sidebarLogo');
+sidebarLogo.addEventListener('click', showLogin);
+sidebarLogo.addEventListener('keydown', e=>{
+  if(e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    showLogin();
+  }
+});
+
+document.getElementById('factorySearchForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const query = document.getElementById('factorySearchInput').value.trim();
+  goPage('factory-network');
+  renderFactoryCards(query);
+});
+
+/* ================= LOGIN ================= */
+document.getElementById('login-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = document.querySelector('.login-btn');
+  const loginScreen = document.getElementById('login-screen');
+  btn.disabled = true;
+  btn.textContent = 'กำลังเข้าสู่ระบบ...';
+  loginScreen.style.transition = 'opacity .35s ease';
+  loginScreen.style.opacity = '0';
+  setTimeout(()=>{
+    loginScreen.style.display = 'none';
+    const app = document.getElementById('app');
+    app.classList.add('show');
+    initCharts();
+    goPage('dashboard');
+  }, 400);
+});
+
+/* ================= RENDER: DASHBOARD FACTORY MINI ================= */
+function renderDashFactoryMini(){
+  const el = document.getElementById('dashFactoryMini');
+  el.innerHTML = factories.map(f=>`
+    <div class="card factory-card" onclick="openFactory('${f.id}')">
+      <div class="fhead">
+        <div><div class="fname">${f.code} · ${f.name}</div><div class="floc">${f.location}</div></div>
+        <span class="status-pill ${f.online?'online':'offline'}">${f.online?'Online':'Offline'}</span>
+      </div>
+      <div class="factory-stats">
+        <div class="fstat"><div class="l">Production</div><div class="v">${f.production.toLocaleString()} m²/d</div></div>
+        <div class="fstat"><div class="l">Polymer Waste</div><div class="v">${f.wasteDay} kg/d</div></div>
+        <div class="fstat"><div class="l">Recovered</div><div class="v">${f.recoveredDay} kg/d</div></div>
+        <div class="fstat"><div class="l">Recovery Rate</div><div class="v">${f.rate}%</div></div>
+      </div>
+      <div class="progress-outer"><div class="progress-inner" style="width:${f.rate}%;background:${f.rate>70?'#1E7B34':f.rate>60?'#F26522':'#C6302B'};"></div></div>
+    </div>`).join('');
+}
+
+/* ================= RENDER: FACTORY NETWORK ================= */
+function renderFactoryCards(query = ''){
+  const normalizedQuery = query.toLocaleLowerCase();
+  const matchingFactories = factories.filter(f=>[
+    f.code, f.name, f.location
+  ].some(value=>value.toLocaleLowerCase().includes(normalizedQuery)));
+  document.getElementById('factoryCards').innerHTML = matchingFactories.length ? matchingFactories.map(f=>`
+    <div class="card factory-card" onclick="openFactory('${f.id}')">
+      <div class="fhead">
+        <div><div class="fname">${f.code}</div><div class="floc">${f.name} · ${f.location}</div></div>
+        <span class="status-pill ${f.online?'online':'offline'}">${f.online?'Online':'Offline'}</span>
+      </div>
+      <div class="factory-stats">
+        <div class="fstat"><div class="l">Production</div><div class="v">${f.production.toLocaleString()} m²/day</div></div>
+        <div class="fstat"><div class="l">Polymer Waste</div><div class="v">${f.wasteDay} kg/day</div></div>
+        <div class="fstat"><div class="l">Recovered</div><div class="v">${f.recoveredDay} kg/day</div></div>
+        <div class="fstat"><div class="l">Waste Recovery Rate</div><div class="v">${f.rate}%</div></div>
+      </div>
+      <div class="progress-outer"><div class="progress-inner" style="width:${f.rate}%;"></div></div>
+      <button class="btn" style="align-self:flex-start;">ดูข้อมูลเชิงลึก →</button>
+    </div>`).join('') : '<div class="card" style="grid-column:1/-1;color:var(--text-soft);text-align:center;">ไม่พบโรงงานที่ตรงกับคำค้นหา</div>';
+
+  const map = document.getElementById('factoryMap');
+  let html = `<div class="map-hub" style="left:50%;top:50%;transform:translate(-50%,-50%);"></div>`;
+  factories.forEach(f=>{
+    const dx = f.x - 50, dy = f.y - 50;
+    const len = Math.sqrt(dx*dx+dy*dy);
+    const angle = Math.atan2(dy,dx)*180/Math.PI;
+    html += `<div class="map-line" style="left:50%;top:50%;width:${len}%;transform:rotate(${angle}deg);"></div>`;
+  });
+  factories.forEach(f=>{
+    html += `<div class="map-pin ${f.online?'on':'off'}" style="left:${f.x}%;top:${f.y}%;" title="${f.name}"></div>
+      <div style="position:absolute;left:${f.x}%;top:calc(${f.y}% + 12px);transform:translateX(-50%);font-size:11px;font-weight:600;color:var(--text-soft);white-space:nowrap;">${f.code}</div>`;
+  });
+  map.innerHTML = html;
+}
+
+let currentFactoryId = 'a';
+function openFactory(id){
+  currentFactoryId = id;
+  const f = factories.find(x=>x.id===id);
+  document.getElementById('fdTitle').textContent = `${f.code} · ${f.name}`;
+  document.getElementById('fdStats').innerHTML = `
+    <div class="card kpi-card"><div class="label">Status</div><span class="status-pill ${f.online?'online':'offline'}" style="margin-top:8px;">${f.online?'Online':'Offline'}</span></div>
+    <div class="card kpi-card"><div class="label">Production</div><div class="value" style="margin-top:8px;">${f.production.toLocaleString()} <small>m²/day</small></div></div>
+    <div class="card kpi-card"><div class="label">Waste Recovery Rate</div><div class="value" style="margin-top:8px;">${f.rate}<small>%</small></div></div>`;
+
+  document.getElementById('fdFlow').innerHTML = flowSteps.map((s,i)=>`
+    <div class="flow-step">${s}</div>
+    ${i<flowSteps.length-1?`<div class="flow-arrow">${svgIcon('<path d="M12 5v14M19 12l-7 7-7-7"/>')}</div>`:''}
+  `).join('');
+
+  document.getElementById('fdWastePoints').innerHTML = wastePoints.map(w=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);">
+      <div><div style="font-weight:600;font-size:13.5px;color:var(--text-black);">${w.name}</div><div style="font-size:11.8px;color:var(--text-soft);margin-top:2px;">เกิดขึ้นที่: ${w.stage}</div></div>
+      <div style="font-weight:700;color:var(--orange-dark);font-size:14.5px;">${w.kg} kg</div>
+    </div>`).join('');
+  goPage('factory-detail');
+}
+
+/* ================= RENDER: WASTE SANKEY-STYLE ================= */
+function renderWasteSankey(){
+  const steps = [
+    {l:'Generated', v:12580}, {l:'Collected', v:11940}, {l:'Sorted', v:10650},
+    {l:'Recovered', v:8920}, {l:'Recycled', v:7850}, {l:'Smart Film', v:6900},
+  ];
+  const max = steps[0].v;
+  document.getElementById('wasteSankey').innerHTML = steps.map((s,i)=>`
+    <div class="hstep">
+      <div class="box"><div class="lb">${s.l}</div><div class="kg">${s.v.toLocaleString()} kg</div>
+        <div class="progress-outer" style="margin-top:8px;"><div class="progress-inner" style="width:${(s.v/max*100).toFixed(0)}%;"></div></div>
+      </div>
+    </div>
+    ${i<steps.length-1?`<div class="hstep-arrow">${svgIcon('<path d="M5 12h14M13 5l7 7-7 7"/>')}</div>`:''}
+  `).join('');
+}
+
+/* ================= RENDER: CIRCULAR FLOW ================= */
+function renderCircularFlow(){
+  document.getElementById('circularFlow').innerHTML = circularSteps.map((s,i)=>`
+    <div class="flow-step ${s.kg?'waste':''}">${s.label}${s.kg?`<div style="font-size:12px;font-weight:700;margin-top:4px;">${s.kg.toLocaleString()} kg</div>`:''}</div>
+    ${i<circularSteps.length-1?`<div class="flow-arrow">${svgIcon('<path d="M12 5v14M19 12l-7 7-7-7"/>')}</div>`:''}
+  `).join('');
+}
+
+/* ================= RENDER: STAGES ================= */
+function renderStages(){
+  document.getElementById('stageList').innerHTML = stages.map(s=>`
+    <div class="stage-item">
+      <div class="stage-num ${s.p===100?'done':''}">${s.p===100?'✓':s.n}</div>
+      <div class="stage-body">
+        <div class="t1"><span>Stage ${s.n} — ${s.t}</span><span style="color:var(--orange-dark);">${s.p}%</span></div>
+        <div class="t2">${s.d}</div>
+        <div class="progress-outer"><div class="progress-inner" style="width:${s.p}%;background:${s.p===100?'#1E7B34':'#F26522'};"></div></div>
+      </div>
+    </div>`).join('');
+}
+
+/* ================= RENDER: COMPARISON TABLE ================= */
+function renderCmpTable(){
+  document.getElementById('cmpTable').innerHTML = `
+    <tr><th>คุณสมบัติ</th><th>Conventional Film</th><th>Recycled Smart Film</th></tr>
+    ${cmpRows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td class="pill-good">${r[2]}</td></tr>`).join('')}
+  `;
+}
+
+/* ================= RENDER: APPLICATIONS ================= */
+function renderApps(){
+  document.getElementById('appsDaily').innerHTML = dailyApps.map(a=>`
+    <div class="app-tile"><div class="aicon">${iconLeaf}</div><div class="an">${a.t}</div></div>`).join('');
+  document.getElementById('appsIndustrial').innerHTML = industrialApps.map(a=>`
+    <div class="app-tile"><div class="aicon">${iconFactory}</div><div class="an">${a.t}</div></div>`).join('');
+}
+
+/* ================= RENDER: ALERTS ================= */
+function renderAlerts(){
+  document.getElementById('alertsList').innerHTML = alerts.map(a=>`
+    <div class="alert-item ${a.level}">
+      <div class="adot" style="background:${a.level==='critical'?'var(--red)':a.level==='warning'?'var(--yellow)':'var(--green)'};"></div>
+      <div><div class="atitle">${a.title}</div><div class="adesc">${a.desc}</div></div>
+      <div class="atime">${a.time}</div>
+    </div>`).join('');
+}
+
+/* ================= RENDER: REPORTS ================= */
+function renderReports(){
+  document.getElementById('reportsList').innerHTML = reports.map(r=>`
+    <div class="report-row">
+      <div><div class="rn">${r.n}</div><div class="rd">${r.d}</div></div>
+      <div class="report-actions">
+        <button class="btn">Export PDF</button>
+        <button class="btn">Export Excel</button>
+        <button class="btn primary">Download Report</button>
+      </div>
+    </div>`).join('');
+}
+
+/* ================= RENDER: PRODUCTS ================= */
+function renderProducts(){
+  document.getElementById('productsGrid').innerHTML = products.map(p=>`
+    <div class="product-card">
+      <div class="pimg">${iconBox}</div>
+      <div class="pbody">
+        <div class="pname">${p.name}</div>
+        <div class="pcode">${p.code}</div>
+        <div class="spec-row"><span>Material</span><b>${p.material}</b></div>
+        <div class="spec-row"><span>Thickness</span><b>${p.thickness}</b></div>
+        <div class="spec-row"><span>Transparency</span><b>${p.transparency}</b></div>
+        <div class="spec-row"><span>UV Protection</span><b>${p.uv}</b></div>
+        <div class="spec-row"><span>Heat Reduction</span><b>${p.heat}</b></div>
+        <div class="spec-row"><span>Smart Function</span><b>${p.func}</b></div>
+        <div class="spec-row"><span>Recycled Content</span><b>${p.recycled}</b></div>
+        <div class="spec-row"><span>Application</span><b>${p.app}</b></div>
+        <span class="status-tag tone-${p.tone}">${p.status}</span>
+      </div>
+    </div>`).join('');
+}
+
+/* ================= RENDER: ROLES ================= */
+function renderRoles(){
+  document.getElementById('rolesGrid').innerHTML = roles.map(r=>`
+    <div class="role-card"><h4>${r.t}</h4><ul>${r.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('');
+}
+
+/* ================= ANALYTICS FILTER CHIPS ================= */
+document.getElementById('timeRangeChips').addEventListener('click', e=>{
+  if(!e.target.classList.contains('chip')) return;
+  document.querySelectorAll('#timeRangeChips .chip').forEach(c=>c.classList.remove('active'));
+  e.target.classList.add('active');
+});
+document.getElementById('factoryFilterChips').addEventListener('click', e=>{
+  if(!e.target.classList.contains('chip')) return;
+  document.querySelectorAll('#factoryFilterChips .chip').forEach(c=>c.classList.remove('active'));
+  e.target.classList.add('active');
+});
+
+/* ================= CHART.JS ================= */
+Chart.defaults.font.family = "'Sarabun', sans-serif";
+Chart.defaults.color = '#6B6D74';
+let chartsInitialized = false;
+function initCharts(){
+  if(chartsInitialized) return;
+  chartsInitialized = true;
+  const days = ['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'];
+
+  new Chart(document.getElementById('chartDashTrend'), {
+    type:'line',
+    data:{labels:days, datasets:[
+      {label:'Waste Generated (kg)', data:[1750,1690,1820,1760,1900,1610,1550], borderColor:'#F26522', backgroundColor:'rgba(242,101,34,.12)', tension:.35, fill:true},
+      {label:'Waste Recovered (kg)', data:[1180,1230,1260,1310,1340,1200,1400], borderColor:'#1E7B34', backgroundColor:'rgba(30,123,52,.10)', tension:.35, fill:true},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{position:'bottom', labels:{boxWidth:10,font:{size:11}}}}, scales:{y:{grid:{color:'#EEEFF2'}}, x:{grid:{display:false}}}}
+  });
+
+  new Chart(document.getElementById('chartDashDonut'), {
+    type:'doughnut',
+    data:{labels:['Recycled','Smart Film','Landfill','Incineration'], datasets:[{data:[7850,6900,2180,1480], backgroundColor:['#1E7B34','#F26522','#C6302B','#B8860B'], borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{position:'bottom', labels:{boxWidth:10,font:{size:11}}}}, cutout:'62%'}
+  });
+
+  new Chart(document.getElementById('chartWasteGen'), {
+    type:'bar',
+    data:{labels:['W1','W2','W3','W4'], datasets:[{label:'Waste Generated (kg)', data:[11800,12100,12580,12300], backgroundColor:'#F26522', borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{y:{grid:{color:'#EEEFF2'}},x:{grid:{display:false}}}}
+  });
+  new Chart(document.getElementById('chartWasteRecov'), {
+    type:'line',
+    data:{labels:['W1','W2','W3','W4'], datasets:[{label:'Recovery Rate (%)', data:[65,68,70.9,72], borderColor:'#1E7B34', backgroundColor:'rgba(30,123,52,.12)', tension:.35, fill:true}]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{y:{grid:{color:'#EEEFF2'}, min:50,max:90},x:{grid:{display:false}}}}
+  });
+  new Chart(document.getElementById('chartRecycleRate'), {
+    type:'bar',
+    data:{labels:['Plant A','Plant B','Plant C'], datasets:[{label:'Recycling Rate (%)', data:[74.4,68.1,60.9], backgroundColor:['#1E7B34','#F26522','#C6302B'], borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{y:{grid:{color:'#EEEFF2'}},x:{grid:{display:false}}}}
+  });
+  new Chart(document.getElementById('chartLandfillIncin'), {
+    type:'doughnut',
+    data:{labels:['Landfill Avoided','Incineration Avoided','Remaining Disposed'], datasets:[{data:[6850,4120,3610], backgroundColor:['#1E7B34','#B8860B','#C6302B'], borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{position:'bottom', labels:{boxWidth:10,font:{size:11}}}}, cutout:'62%'}
+  });
+
+  new Chart(document.getElementById('chartRadar'), {
+    type:'radar',
+    data:{labels:radarLabels, datasets:[
+      {label:'Conventional Film', data:radarConventional, borderColor:'#6B6D74', backgroundColor:'rgba(107,109,116,.15)'},
+      {label:'Recycled Smart Film', data:radarSmart, borderColor:'#F26522', backgroundColor:'rgba(242,101,34,.20)'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{position:'bottom', labels:{boxWidth:10,font:{size:11}}}}, scales:{r:{grid:{color:'#EEEFF2'}, angleLines:{color:'#EEEFF2'}, suggestedMin:0, suggestedMax:100}}}
+  });
+
+  new Chart(document.getElementById('chartBeforeAfter'), {
+    type:'bar',
+    data:{labels:['CO₂ (tCO₂e)','Landfill (tons)','Incineration (tons)'], datasets:[
+      {label:'Before', data:[0,26.4,19.6], backgroundColor:'#C6302B', borderRadius:5},
+      {label:'After', data:[24.8,8.2,5.4], backgroundColor:'#1E7B34', borderRadius:5},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{position:'bottom', labels:{boxWidth:10,font:{size:11}}}}, scales:{y:{grid:{color:'#EEEFF2'}},x:{grid:{display:false}}}}
+  });
+
+  new Chart(document.getElementById('chartAnalytics1'), {
+    type:'bar',
+    data:{labels:days, datasets:[
+      {label:'Production Volume (m²)', data:[4800,4950,4700,5100,4900,4600,5050], backgroundColor:'#111113', borderRadius:5},
+      {label:'Film Waste (kg)', data:[1750,1690,1820,1760,1900,1610,1550], backgroundColor:'#F26522', borderRadius:5},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{position:'bottom', labels:{boxWidth:10,font:{size:11}}}}, scales:{y:{grid:{color:'#EEEFF2'}},x:{grid:{display:false}}}}
+  });
+  new Chart(document.getElementById('chartAnalytics2'), {
+    type:'line',
+    data:{labels:days, datasets:[{label:'Recovery Rate (%)', data:[67,69,68,70,71,72,72.4], borderColor:'#1E7B34', backgroundColor:'rgba(30,123,52,.12)', tension:.35, fill:true}]},
+    options:{responsive:true,maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{y:{grid:{color:'#EEEFF2'}, min:50,max:90},x:{grid:{display:false}}}}
+  });
+}
+
+/* ================= INIT ================= */
+renderDashFactoryMini();
+renderFactoryCards();
+renderWasteSankey();
+renderCircularFlow();
+renderStages();
+renderCmpTable();
+renderApps();
+renderAlerts();
+renderReports();
+renderProducts();
+renderRoles();
+openFactory('a');
+goPage('dashboard');
+</script>
+</body>
+</html>
