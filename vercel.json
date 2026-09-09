@@ -1,4 +1,5 @@
 {
+  "name": "smart-laminated-glass",
   "rewrites": [
     { "source": "/", "destination": "/smart-laminated-glass-waste-dashboard.html" }
   ]
